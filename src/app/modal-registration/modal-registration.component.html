@@ -1,0 +1,44 @@
+<div class="modal-header">
+    <h4 class="modal-title">Регистрация</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+            <div class="form-group">
+                <label for="exampleInputPassword1">ФИО :</label>
+                <small *ngIf='showError(formControlFIO)'  id="inputPhone" class="form-text text-danger">Не корректный ввод!</small>
+                <input type="text" class="form-control" placeholder="Иванов иван иванович" [formControl]="formControlFIO"> 
+            </div>
+            <div class="form-group">
+                <label for="inputPhone">Телефон :</label>
+                <small *ngIf='showError(formControlPhone)'  id="inputPhone" class="form-text text-danger">Не корректный ввод!</small>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputPhone">+7</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="4732655162" id="inputPhone" [formControl]="formControlPhone">
+                </div>
+                <small id="inputPhone" class="form-text text-muted">10 цифр, без начальной 8/+7</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Почта :</label>
+                <small *ngIf='showError(formControlEmail)'  id="inputPhone" class="form-text text-danger">Не корректный ввод!</small>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">&nbsp;@</span>
+                    </div>
+                <input type="mail" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" [formControl]="formControlEmail">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Пароль :</label>
+                <small *ngIf='showError(formControlPassword)'  id="inputPhone" class="form-text text-danger">Не корректный ввод!</small>
+                <input type="password" class="form-control" id="exampleInputPassword1" [formControl]="formControlPassword">
+            </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="registry()">Зарегистрироваться</button>
+  </div>

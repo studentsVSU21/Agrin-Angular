@@ -1,23 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a style="font-family: Gloria Hallelujah, cursive" class="navbar-brand">Agrin</a>
   <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Главная</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Заказ</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">О нас</a>
-      </li>
-    </ul>
+    <span class="mr-auto"></span>
     <ul class="navbar-nav dropdown-menu-md-right">
       <li class="nav-item">
-        <a class="nav-link" href="#">Регистрация</a>
+        <button class="btn nav-link" (click)="openRegistry()">Регистрация</button>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Войти</a>
+        <button class="btn nav-link" (click)="open()">Войти</button>
       </li>
     </ul>
   </div>
