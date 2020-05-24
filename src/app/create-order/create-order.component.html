@@ -1,0 +1,53 @@
+<div class="container">
+    <h3>Оформление заказа</h3>
+    <hr>
+    <form>
+        <div class="form-group row">
+            <div class="col-md-1"></div>
+            <label class="col-lg-1 col-md-2 col-form-label" for="formGroupExampleInput">ФИО:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-1"></div>
+            <label class="col-lg-1 col-md-2 col-form-label" for="formGroupExampleInput">Телефон:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-1"></div>
+            <label class="col-lg-1 col-md-2 col-form-label" for="formGroupExampleInput">Mail:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="sample@gmail.com">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-1"></div>
+            <label class="col-lg-1 col-md-2 col-form-label" for="formGroupExampleInput">Размер:</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="5">
+                <small id="emailHelp" class="form-text text-muted">Размер земельного участка, который нужно обработать, укажите в гектарах</small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-1"></div>
+            <label class="col-lg-1 col-md-2 col-form-label" for="formGroupExampleInput">Регион:</label>
+            <div class="col-md-8">
+                <select class="custom-select">
+                    <option selected>Open this select menu</option>
+                    <option *ngFor='let region of listsRegion' [value]="region.id">{{region.nameRegion}}</option>
+                </select>
+            </div>
+        </div> 
+        <div class="form-group row">
+            <div class="col-md-1"></div>
+            <div class=col-md-3>
+                <button class="btn btn-success">
+                    Заказать
+                </button>
+            </div>
+        </div>
+      </form>
+</div>
