@@ -19,11 +19,13 @@ import { ModalRegistrationComponent } from './modal-registration/modal-registrat
 import {AuthInterseptorService } from './services/auth-interseptor.service';
 import { RegistrationResultComponent } from './registration-result/registration-result.component';
 import { CreateOrderComponent } from './create-order/create-order.component';
+import { ListNewOrdersComponent } from './list-new-orders/list-new-orders.component';
 
 const appRoutes: Routes =[
   { path : '', component: MainComponent},
   { path : 'registration/info', component : RegistrationResultComponent },
-  { path : 'create/order', component : CreateOrderComponent}
+  { path : 'create/order', component : CreateOrderComponent},
+  { path : 'new/orders', component : ListNewOrdersComponent}
 ];
 
 @NgModule({
@@ -35,7 +37,8 @@ const appRoutes: Routes =[
     ModalAuthComponent,
     ModalRegistrationComponent,
     RegistrationResultComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    ListNewOrdersComponent
   ],
 
   imports: [

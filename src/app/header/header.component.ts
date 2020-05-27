@@ -3,6 +3,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ModalAuthComponent } from '../modal-auth/modal-auth.component';
 import { ModalRegistrationComponent } from '../modal-registration/modal-registration.component';
 import {Router} from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private router: Router) { }
+    private router: Router,
+    private authService : AuthService) { }
 
   ngOnInit() {
   }
@@ -31,5 +33,17 @@ export class HeaderComponent implements OnInit {
         }
       }
     );
+  }
+
+  leave() {
+    this.authService.logout();
+  }
+
+  isAuth() {
+    return this.authService.isAuth();
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
   }
 }

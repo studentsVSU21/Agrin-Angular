@@ -1,33 +1,61 @@
 <div class="container">
     <h3>Оформление заказа</h3>
+
+    <div *ngIf='successOrder' class="alert alert-success" role="alert">
+        <strong>Успешно!</strong> Ваш заказ отправлен, через некоторое время с вами свяжуться,
+         для уточнения дополнительной информации.
+    </div>
+
+    <div *ngIf='failureOrder' class="alert alert-danger" role="alert">
+        <strong>Ошибка!</strong> Что-то пошло не так.
+      </div>
+
     <hr>
     <form>
         <div class="form-group row">
             <div class="col-md-1"></div>
-            <label class="col-lg-1 col-md-2 col-form-label" for="formGroupExampleInput">ФИО:</label>
+            <label class="col-lg-1 col-md-2 col-form-label" for="fioInput">ФИО:</label>
             <div class="col-md-8">
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                <small *ngIf='showError(formControlFIO)'  id="inputPhone" class="form-text text-danger">Не корректный ввод!</small>
+                <input type="text" class="form-control" id="fioInput" placeholder="Ивано Иван Иванович" [formControl]="formControlFIO">
             </div>
         </div>
+
         <div class="form-group row">
             <div class="col-md-1"></div>
-            <label class="col-lg-1 col-md-2 col-form-label" for="formGroupExampleInput">Телефон:</label>
+            <label class="col-lg-1 col-md-2 col-form-label" for="phoneInput">Телефон:</label>
             <div class="col-md-8">
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                <small *ngIf='showError(formControlPhone)'  id="inputPhone" class="form-text text-danger">Не корректный ввод!</small>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputPhone">+7</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="4732655162" id="inputPhone" [formControl]="formControlPhone">
+                </div>
+                <small id="inputPhone" class="form-text text-muted">10 цифр, без начальной 8/+7</small>
             </div>
         </div>
+
         <div class="form-group row">
             <div class="col-md-1"></div>
-            <label class="col-lg-1 col-md-2 col-form-label" for="formGroupExampleInput">Mail:</label>
+            <label class="col-lg-1 col-md-2 col-form-label" for="mailInput">Mail:</label>
             <div class="col-md-8">
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="sample@gmail.com">
+                <small *ngIf='showError(formControlEmail)'  id="inputPhone" class="form-text text-danger">Не корректный ввод!</small>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">&nbsp;@</span>
+                    </div>
+                    <input type="mail" class="form-control" placeholder="sample@gmail.com" aria-label="Username" aria-describedby="basic-addon1" [formControl]="formControlEmail">
+                </div>
             </div>
         </div>
+
         <div class="form-group row">
             <div class="col-md-1"></div>
             <label class="col-lg-1 col-md-2 col-form-label" for="formGroupExampleInput">Размер:</label>
             <div class="col-md-8">
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="5">
+                <small *ngIf='showError(formConrtolArea)'  id="inputPhone" class="form-text text-danger">Не корректный ввод!</small>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="5" [formControl]="formConrtolArea">
                 <small id="emailHelp" class="form-text text-muted">Размер земельного участка, который нужно обработать, укажите в гектарах</small>
             </div>
         </div>
@@ -35,8 +63,9 @@
             <div class="col-md-1"></div>
             <label class="col-lg-1 col-md-2 col-form-label" for="formGroupExampleInput">Регион:</label>
             <div class="col-md-8">
-                <select class="custom-select">
-                    <option selected>Open this select menu</option>
+                <small *ngIf='showError(formControlRegion)'  id="inputPhone" class="form-text text-danger">Не корректный ввод!</small>
+                <select class="custom-select" [formControl]='formControlRegion'>
+                    <option value='-1' selected>---Выбрать---</option>
                     <option *ngFor='let region of listsRegion' [value]="region.id">{{region.nameRegion}}</option>
                 </select>
             </div>
@@ -44,7 +73,7 @@
         <div class="form-group row">
             <div class="col-md-1"></div>
             <div class=col-md-3>
-                <button class="btn btn-success">
+                <button class="btn btn-success" (click)="createOrder()">
                     Заказать
                 </button>
             </div>

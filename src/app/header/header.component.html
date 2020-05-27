@@ -3,11 +3,17 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <span class="mr-auto"></span>
     <ul class="navbar-nav dropdown-menu-md-right">
-      <li class="nav-item">
+      <li *ngIf='!isAuth()' class="nav-item">
         <button class="btn nav-link" (click)="openRegistry()">Регистрация</button>
       </li>
-      <li class="nav-item">
+      <li *ngIf='!isAuth()' class="nav-item">
         <button class="btn nav-link" (click)="open()">Войти</button>
+      </li>
+      <li *ngIf='isAuth()' class="nav-item">
+        <button class="btn nav-link" (click)="leave()">Выйти</button>
+      </li>
+      <li *ngIf='isAuth() && isAdmin()' class="nav-item">
+        <a class="nav-link" [routerLink]="['new/orders']">Заказы</a>
       </li>
     </ul>
   </div>
