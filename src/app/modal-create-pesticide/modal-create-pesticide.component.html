@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h4 class="modal-title">Добавление пестицидов</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+        <form>
+            <div class="form-group">
+                <label for="namePesticide">Название :</label>
+                <small *ngIf='invalidForm(formName)' id="emailHelp" class="form-text text-danger">Ошибка ввод!</small>
+                <input type="text" class="form-control" id="namePesticide" [formControl]='formName'>
+            </div>
+            <div class="form-group">
+                <label for="pesticideVolume">Объем :</label>
+                <small *ngIf='invalidForm(formVolume)' id="emailHelp" class="form-text text-danger">Ошибка ввод!</small>
+                <input type="text" class="form-control" id="pesticideVolume" placeholder="100" [formControl]='formVolume'>
+                <small id="emailHelp" class="form-text text-muted">Укажите в литрах, максимальное значение 9999</small>
+            </div>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" (click)="addingPesticide()">Добавить</button>
+</div>

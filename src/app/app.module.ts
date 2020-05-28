@@ -20,12 +20,15 @@ import {AuthInterseptorService } from './services/auth-interseptor.service';
 import { RegistrationResultComponent } from './registration-result/registration-result.component';
 import { CreateOrderComponent } from './create-order/create-order.component';
 import { ListNewOrdersComponent } from './list-new-orders/list-new-orders.component';
+import { PesticideSheetComponent } from './pesticide-sheet/pesticide-sheet.component';
+import { ModalCreatePesticideComponent } from './modal-create-pesticide/modal-create-pesticide.component';
 
 const appRoutes: Routes =[
   { path : '', component: MainComponent},
   { path : 'registration/info', component : RegistrationResultComponent },
   { path : 'create/order', component : CreateOrderComponent},
-  { path : 'new/orders', component : ListNewOrdersComponent}
+  { path : 'new/orders', component : ListNewOrdersComponent},
+  { path : 'manage/pesticide', component : PesticideSheetComponent}
 ];
 
 @NgModule({
@@ -38,7 +41,9 @@ const appRoutes: Routes =[
     ModalRegistrationComponent,
     RegistrationResultComponent,
     CreateOrderComponent,
-    ListNewOrdersComponent
+    ListNewOrdersComponent,
+    PesticideSheetComponent,
+    ModalCreatePesticideComponent
   ],
 
   imports: [
@@ -58,7 +63,8 @@ const appRoutes: Routes =[
   bootstrap: [AppComponent],
   entryComponents : [
     ModalAuthComponent,
-    ModalRegistrationComponent
+    ModalRegistrationComponent,
+    ModalCreatePesticideComponent
   ]
 })
 export class AppModule { }

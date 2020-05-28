@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a style="font-family: Gloria Hallelujah, cursive" class="navbar-brand">Agrin</a>
+  <a class="navbar-brand" [routerLink]="['/']">Agrin</a>
   <div class="collapse navbar-collapse" id="navbarText">
     <span class="mr-auto"></span>
     <ul class="navbar-nav dropdown-menu-md-right">
@@ -9,11 +9,11 @@
       <li *ngIf='!isAuth()' class="nav-item">
         <button class="btn nav-link" (click)="open()">Войти</button>
       </li>
-      <li *ngIf='isAuth()' class="nav-item">
-        <button class="btn nav-link" (click)="leave()">Выйти</button>
-      </li>
       <li *ngIf='isAuth() && isAdmin()' class="nav-item">
         <a class="nav-link" [routerLink]="['new/orders']">Заказы</a>
+      </li>
+      <li *ngIf='isAuth()' class="nav-item">
+        <button class="btn nav-link" (click)="leave()">Выйти</button>
       </li>
     </ul>
   </div>

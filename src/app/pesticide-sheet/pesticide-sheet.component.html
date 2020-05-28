@@ -1,0 +1,24 @@
+<div class="container">
+    <h4 class='headline'>Пестициды</h4>
+    <button class="btn btn-secondary adding" (click)="open()">Добавить</button>
+    <table class="table col-lg-8">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Название</th>
+            <th>Объем</th>
+            <th>Действие</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pesticide of pesticides; let i=index">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{pesticide.name}}</td>
+            <td>{{pesticide.volume}}</td>
+            <td>
+              <button class="btn btn-primary change" (click)="change(pesticide.id)">Изменить</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

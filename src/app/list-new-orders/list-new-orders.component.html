@@ -1,1 +1,23 @@
-<p>list-new-orders works!</p>
+<div class ="container">
+
+	<h4 class="headline">Новые заказы</h4>
+
+	<div *ngIf='newOrders && newOrders.length == 0' class="alert alert-info" role="alert">
+    <strong>Пусто!</strong>
+	</div>
+
+	<div *ngFor='let order of newOrders' class="card col-lg-6 order-container">
+			<div class="card-body order">
+				<h5 class="card-title">Заказ №{{order.id}}</h5>
+				<p class="card-text">
+					Заказчик : {{order.customer.fio}} <br>
+					Номер : +7 {{order.customer.phoneNumber}} <br/>
+					Почта : {{order.customer.email}} <br/>
+					Площадь : {{order.area}} <br/>
+					Регион : {{order.region.nameRegion}} <br/>
+				</p>
+				<button class="btn btn-success">Подтвердить</button>
+				<button class="btn btn-outline-danger" (click)="rejectOrder(order.id)" >Отклонить</button>
+			</div>
+	</div>
+</div>

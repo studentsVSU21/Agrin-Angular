@@ -1,0 +1,12 @@
+.headline {
+    margin: 20px;
+}
+
+.adding {
+    margin : 15px 0;
+}
+
+.change {
+    position: relative;
+    bottom : 5px;
+}
