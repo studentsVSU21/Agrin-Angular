@@ -12,6 +12,7 @@
 		</p>
 
 		<button class="btn btn-success order-button" (click)="openModalConfirm(order.id)">Подтвердить</button>
-		<button class="btn btn-outline-danger order-button" (click)="rejectOrder(order.id)" >Отклонить</button>
+		<button class="btn btn-danger order-button" (click)="rejectOrder(order.id)" >Отклонить</button>
+		<button class="btn btn-outline-danger order-button" (click)="blockData(order.id)" >Блокировать</button>
 	</app-card-order>
 </div>

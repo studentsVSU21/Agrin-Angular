@@ -16,6 +16,7 @@ import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 export class CreateOrderComponent implements OnInit {
 
   listsRegion : RegionDTO[];
+  blockData : boolean = false;
 
   formControlFIO : FormControl;
   formControlPhone : FormControl;
@@ -93,6 +94,7 @@ export class CreateOrderComponent implements OnInit {
 
 
   createOrder()  {
+    this.blockData = false;
     let date =this.formControlData.value as NgbDateStruct;
     this.clickCreate = true;
     console.log(this.formConrtolArea.valid);
@@ -116,6 +118,9 @@ export class CreateOrderComponent implements OnInit {
         res => {
           if (res['status'] == 'success') {
             this.successOrder = true;
+          }
+          if (res['status'] == 'failure' && res['message'] == 'blackList') {
+            this.blockData = true;
           }
           console.log(res);
         },

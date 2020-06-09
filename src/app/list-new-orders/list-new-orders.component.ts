@@ -77,4 +77,18 @@ export class ListNewOrdersComponent implements OnInit {
     )
   }
 
+  blockData(orderID : number ) {
+    this.orderService.blockDataOrder(orderID).subscribe(
+      res => {
+        if (res["status"] == "success") {
+          this.loadNewOrders();
+        }
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
 }

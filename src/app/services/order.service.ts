@@ -129,4 +129,11 @@ export class OrderService {
     return this.http.post(url, {});
   }
 
+
+  blockDataOrder(orderId : number ) {
+    let url = `${environment.baseUrl}/manager/order/block/data?orderId=${orderId}`;
+
+    return this.http.post(url, {});
+  }
+
 }
