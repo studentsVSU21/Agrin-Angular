@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { FullOrderDTO } from '../dto/FullOrderDTO';
+import {NgbModal, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { ModalConfirmOrderComponent } from '../modal-confirm-order/modal-confirm-order.component';
+import { ConfirmationOrderDTO } from '../dto/ConfirmOrderDTO';
+
 
 @Component({
   selector: 'app-list-new-orders',
@@ -9,9 +13,12 @@ import { FullOrderDTO } from '../dto/FullOrderDTO';
 })
 export class ListNewOrdersComponent implements OnInit {
 
+  model: NgbDateStruct;
   newOrders : FullOrderDTO[]
 
-  constructor(private orderService : OrderService) { }
+  constructor(
+    private modalService: NgbModal,
+    private orderService : OrderService) { }
 
   ngOnInit() {
     this.loadNewOrders();
@@ -38,6 +45,33 @@ export class ListNewOrdersComponent implements OnInit {
       },
       err => {
         this.loadNewOrders();
+        console.log(err);
+      }
+    )
+  }
+
+  openModalConfirm(orderId : number) {
+    this.modalService.open(ModalConfirmOrderComponent).result.then(
+      res => {
+        console.log(res);
+        let confirmDTO = res as ConfirmationOrderDTO;
+        confirmDTO.orderId = orderId;
+        console.log(confirmDTO);
+        this.confirm(confirmDTO);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  confirm( confirmOrder : ConfirmationOrderDTO) {
+    this.orderService.confirmOrder(confirmOrder).subscribe(
+      res => {
+        console.log(res);
+        this.loadNewOrders();
+      },
+      err => {
         console.log(err);
       }
     )

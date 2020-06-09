@@ -6,6 +6,7 @@ import { OrderDTO } from '../dto/OrderDTO';
 import { OrderService } from '../services/order.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';  
 
 @Component({
   selector: 'app-create-order',
@@ -21,6 +22,7 @@ export class CreateOrderComponent implements OnInit {
   formControlEmail : FormControl;
   formConrtolArea : FormControl;
   formControlRegion : FormControl;
+  formControlData : FormControl;
 
   clickCreate : boolean = false;
 
@@ -72,22 +74,26 @@ export class CreateOrderComponent implements OnInit {
       ]
     );
     this.formControlFIO = new FormControl( "", Validators.required );
+    this.formControlData = new FormControl("", [
+      Validators.required
+    ]);
   }
 
   checkValidForm() : boolean {
-    console.log(this.formControlFIO.valid);
-    console.log(this.formConrtolArea.valid);
-    console.log(this.formControlEmail.valid);
-    console.log(this.formControlPhone.valid);
-    console.log(this.formControlRegion.valid);
+    console.log(this.formControlData.valid);
+    console.log(this.formControlData.value);
     return  this.formControlFIO.valid && 
       this.formConrtolArea.valid && 
       this.formControlEmail.valid && 
       this.formControlPhone.valid && 
-      this.formControlRegion.valid;
+      this.formControlRegion.valid && 
+      this.formControlData.valid;
   }
 
+
+
   createOrder()  {
+    let date =this.formControlData.value as NgbDateStruct;
     this.clickCreate = true;
     console.log(this.formConrtolArea.valid);
     console.log("check")
@@ -103,7 +109,8 @@ export class CreateOrderComponent implements OnInit {
       let order = this.orderService.generateOrder(
         customer,
         this.formConrtolArea.value as number,
-        this.formControlRegion.value as number
+        this.formControlRegion.value as number,
+        new Date(date.year, date.month, date.day)
       );
       this.orderService.createOrder(order).subscribe(
         res => {

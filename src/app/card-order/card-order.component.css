@@ -1,8 +1,9 @@
-.order-button {
-    margin: 5px;
-}
 .order-container {
     margin: 10px;
+}
+
+.order button {
+    margin: 5px;
 }
 
 .headline {

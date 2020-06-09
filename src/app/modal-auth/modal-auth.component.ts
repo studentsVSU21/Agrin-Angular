@@ -48,7 +48,8 @@ export class ModalAuthComponent implements OnInit {
       let authData = this.authService.createAuth(this.formLogin.value, this.fromPassword.value);
       this.authService.authUser(authData).subscribe(
         res => {
-          this.authService.validAuth(res);
+          if (this.authService.validAuth(res)) 
+            this.activeModal.close();
         },
         err => {
           console.log(err);

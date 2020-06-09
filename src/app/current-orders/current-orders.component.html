@@ -1,0 +1,15 @@
+<div class ="container">
+
+	<h4 class="headline">Текущие заказы</h4>
+
+	<div *ngIf='currentOrders && currentOrders.length == 0' class="alert alert-info" role="alert">
+    	<strong>Пусто!</strong>
+	</div>
+
+	<app-card-order *ngFor='let order of currentOrders' [order]="order">
+		<p>
+			Дата начала: {{order.date}}
+        </p>
+        <a class="btn btn-info" [routerLink]="['/detail/order', order.id]">Подробнее</a>
+	</app-card-order>
+</div>

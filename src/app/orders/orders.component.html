@@ -1,0 +1,15 @@
+<div class="container">
+    <h4>Мои заказы</h4>
+
+    <app-card-order *ngFor='let order of ordersOfUser' [order]='order'>
+        <span *ngIf="order.status == 'rejected'" class="badge badge-danger">Отменен</span>
+        <span *ngIf="order.status == 'new'" class="badge badge-secondary">Обработка</span>
+        <a  
+            *ngIf="order.status == 'adopted' || order.status == 'completed'" 
+            class="btn btn-info"
+            [routerLink]="['/detail/order', order.id]">
+                Подробнее    
+        </a>
+    </app-card-order>
+
+</div>

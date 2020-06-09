@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h4 class="modal-title">Обработанная площадь</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf='errorAdding' class="alert alert-danger" role="alert">
+        <strong>Ошибка!</strong> Не подходящее значение.
+    </div>
+    <form>
+        <div class="form-group">
+            <label for="formGroupExampleInput">Значение: </label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="formGroupExampleInput" 
+              placeholder="10" 
+              [formControl]='formControlArea'
+            >
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-dark" (click)="add()">Добавить</button>
+</div>

@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h4 class="modal-title">Подтверждение заказа!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+
+        <label>Средство обработки:</label>
+        <select class="custom-select" [formControl]="formControlPesticide">
+            <option selected>Пестициды</option>
+            <option *ngFor="let pesticide of pesticides" [value]="pesticide.id">
+              {{pesticide.name}}
+            </option>
+          </select>
+      </div>
+        <div class="form-group">
+            <label>Дата начала:</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dp2" [(ngModel)]="startDate" ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><img class="img-calendare" src="assets/media/image/calendare.png"></button>
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label>Дата начала:</label>
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp2" [(ngModel)]="endDate" ngbDatepicker #d2="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="d2.toggle()" type="button"><img class="img-calendare" src="assets/media/image/calendare.png"></button>
+            </div>
+          </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" (click)="confirm()">
+      Завершить
+    </button>
+</div>

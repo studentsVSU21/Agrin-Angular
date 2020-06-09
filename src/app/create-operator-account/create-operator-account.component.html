@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-8 col-lg-6 card margin-top-20">
+
+            <div class="card-header">
+                <h5 class="marg-15">Регистрация оператора</h5>
+            </div>
+            <div class="card-body"> 
+
+                <div *ngIf='successRegistry' class="alert alert-success" role="alert">
+                    <strong>Выполнено!</strong> Оператор зарегистрирован.
+                </div>
+
+                <div *ngIf='mailBusy' class="alert alert-danger" role="alert">
+                    <strong>Ошибка!</strong> Mail занят!
+                </div>
+                <div *ngIf='loadStatus' class="alert alert-danger" role="alert">
+                    <strong>Ошибка!</strong> Не корректный ввод.
+                </div>
+                <form>
+                    <div class="form-group row">
+                        <div class="col-md-3 col-xl-3">
+                            <label class="align-center" for="exampleInputPassword1">ФИО :</label>
+                        </div>
+                        <div class="col-md-9 col-xl-9">
+                            <input type="text" class="form-control" placeholder="Иванов иван иванович" [formControl]="formControlFIO"> 
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3 col-xl-3">
+                            <label class="align-center" for="inputPhone">Телефон :</label>
+                        </div>
+                        <div class="col-md-9 col-xl-9">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputPhone">+7</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="4732655162" id="inputPhone" [formControl]="formControlPhone">
+                            </div>
+                            <small id="inputPhone" class="form-text text-muted">10 цифр, без начальной 8/+7</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-group row">
+                            <div class="col-md-3 col-xl-3">
+                                <label class="align-center" for="exampleInputPassword1">Почта :</label>
+                            </div>
+                        <div class="col-md-9 col-xl-9">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">&nbsp;@</span>
+                            </div>
+                            <input type="mail" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" [formControl]="formControlEmail">
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3 col-xl-3">
+                            <label class="align-center" for="exampleInputPassword1">Пароль :</label>
+                        </div>
+                        <div class="col-md-9 col-xl-9">
+                            <input type="password" class="form-control" id="exampleInputPassword1" [formControl]="formControlPassword">
+                        </div>
+                    </div>
+                    <button class="btn btn-success margin-top-20" (click)="reg()">Зарегистрировать</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -69,7 +69,24 @@
                     <option *ngFor='let region of listsRegion' [value]="region.id">{{region.nameRegion}}</option>
                 </select>
             </div>
-        </div> 
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-md-1"></div>
+            <label class="col-lg-1 col-md-2 col-form-label" for="formGroupExampleInput">Дата:</label>
+            <div class="col-md-8">
+                <small *ngIf='showError(formControlData)'  id="inputPhone" class="form-text text-danger">Не корректный ввод!</small>
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                            name="dp"  ngbDatepicker #d="ngbDatepicker" [formControl]="formControlData" >
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><img class="img-calendare" src="assets/media/image/calendare.png"></button>
+                    </div>
+                </div>
+                <small id="emailHelp" class="form-text text-muted">Желательная дата для начала обработки</small>
+            </div>
+        </div>
+        
         <div class="form-group row">
             <div class="col-md-1"></div>
             <div class=col-md-3>

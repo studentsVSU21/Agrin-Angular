@@ -1,0 +1,87 @@
+<div class="container">
+    <h4 class="headline">Заказ №{{id}}</h4>
+
+    <div *ngIf='nullOrder' class="alert alert-warning" role="alert">
+        <strong>Предупреждение!</strong> Заказа с заданным номером не существует.
+    </div>
+
+    <div *ngIf="detailOrder">
+        <p>
+            Заказчик : {{detailOrder.infoOrder.customer.fio}} <br>
+            Номер : +7 {{detailOrder.infoOrder.customer.phoneNumber}} <br/>
+            Почта : {{detailOrder.infoOrder.customer.email}} <br/>
+            Регион : {{detailOrder.infoOrder.region.nameRegion}} <br/>
+        </p>
+        <div class="row">
+            <div class="col-md-5 col-xl-4">
+                Начало обработки : {{detailOrder.progress.dateStart}}
+            </div>
+            <div class="col-md-5">
+                Конец обработки : {{detailOrder.progress.dateEnd}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-xl-4">
+                Обработанная площадь : {{detailOrder.progress.processedArea}}
+            </div>
+            <div class="col-md-5">
+                Общая Площадь : {{detailOrder.infoOrder.area}}
+            </div>
+        </div>
+        <div *ngIf='pesticides' class="">
+            Химические средства: 
+            <span *ngFor="let pesticide of pesticides; let i = index">
+                {{pesticide.name}} <span *ngIf='pesticides.length - 1 != i'>,</span>
+            </span>
+        </div>
+
+        <div *ngIf="authService.isManage() && detailOrder.progress.status.nameStatus == 'adopted'" class="marg-15"> 
+            <button 
+                *ngIf='authService.isOperator()' 
+                class="btn btn-primary marg-15"
+                (click)="openReport()"
+            >
+                Сделать отчет
+            </button>
+            <button class='btn btn-primary marg-15' (click)="changeProccessArea()">
+                Обработанная площадь
+            </button>
+            <button 
+                class="btn btn-primary marg-15"
+                (click)="completeOrder()"
+                >
+                Завершить
+            </button>
+        </div>
+
+        <div *ngIf='!authService.isManage()'>
+            <button 
+              *ngIf="detailOrder.progress.status.nameStatus == 'completed'" 
+              class="btn btn-primary"
+              (click)="reOrder()"> 
+                Перезаказать
+            </button>
+        </div>
+
+        <div *ngIf="expenseReports" class="">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Название</th>
+                    <th>Обьем</th>
+                    <th>Дата</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor='let expenseReport of expenseReports; let i = index'>
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{expenseReport.pesticideName}}</td>
+                    <td>{{expenseReport.volume}}</td>
+                    <td>{{expenseReport.reportDate}}</td>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+    </div>
+</div>

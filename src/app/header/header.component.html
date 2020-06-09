@@ -3,6 +3,9 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <span class="mr-auto"></span>
     <ul class="navbar-nav dropdown-menu-md-right">
+      <li *ngIf='isAuth() && ( isOperator() || isAdmin())' class="nav-item">
+        <button class="btn nav-link" [routerLink]="['current/order']">Текущие заказы</button>
+      </li>
       <li *ngIf='!isAuth()' class="nav-item">
         <button class="btn nav-link" (click)="openRegistry()">Регистрация</button>
       </li>
@@ -10,7 +13,16 @@
         <button class="btn nav-link" (click)="open()">Войти</button>
       </li>
       <li *ngIf='isAuth() && isAdmin()' class="nav-item">
+        <a class="nav-link" [routerLink]="['manage/pesticide']">Пестициды</a>
+      </li>
+      <li *ngIf='isAuth() && isAdmin()' class="nav-item">
         <a class="nav-link" [routerLink]="['new/orders']">Заказы</a>
+      </li>
+      <li *ngIf='isAuth()' class="nav-item">
+        <a class="btn nav-link" [routerLink]="['profile']">Профиль</a>
+      </li>
+      <li *ngIf='isAuth() && isAdmin()' class="nav-item">
+        <a class="nav-link" [routerLink]="['create/operator']">Операторы</a>
       </li>
       <li *ngIf='isAuth()' class="nav-item">
         <button class="btn nav-link" (click)="leave()">Выйти</button>

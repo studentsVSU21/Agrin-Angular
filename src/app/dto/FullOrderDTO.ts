@@ -6,5 +6,6 @@ export interface FullOrderDTO{
     area : number,
     id : number,
     region : RegionDTO,
-    customer : FullCustomerDTO
+    customer : FullCustomerDTO,
+    date : Date
 }

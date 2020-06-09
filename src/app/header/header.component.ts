@@ -46,4 +46,8 @@ export class HeaderComponent implements OnInit {
   isAdmin() {
     return this.authService.isAdmin();
   }
+
+  isOperator() {
+    return this.authService.isOperator();
+  }
 }

@@ -27,6 +27,11 @@ export class AuthService {
     return localStorage.getItem(ACCESS_TOKEN) != null;
   }
 
+  isOperator() {
+    let role : string = localStorage.getItem(ROLE);
+    return role != null && role == 'OPERATOR';
+  }
+
   authUser( authData : AuthData) : Observable<HttpResponse<void>>  {
     let url = `${environment.baseUrl}/user/login`;
 
@@ -52,7 +57,11 @@ export class AuthService {
     return role != null && role == 'USER';
   }
 
-  validAuth( res : HttpResponse<void>) {
+  isManage() {
+    return this.isAdmin() || this.isOperator();
+  }
+
+  validAuth( res : HttpResponse<void>) : boolean {
     if (res.status == 200)  {
       let accessToken = res.headers.get("Authorization");
       if (accessToken != null ) {
@@ -68,8 +77,10 @@ export class AuthService {
           err => {
             console.log(err);
           }
-        )
+        );
+        return true;
       }
+      return false;
     }
   }
 

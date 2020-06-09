@@ -1,0 +1,18 @@
+<div class="container">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" [routerLink]="['/myOrders']">Мои заказы</a>
+    </li>
+  </ul>
+  <div class="card col-md-6">
+    <h5 class="card-header">Информация о пользователе</h5>
+    <div class="card-body">
+      <p class="card-text">
+        ФИО : {{userInfo.fio}} <br/>
+        Телефон : {{userInfo.phoneNumber}} <br/>
+        Почта : {{userInfo.email}}
+      </p>
+      <button type="button" class="btn btn-primary" (click)="refactor()">Редактировать</button>
+    </div>
+  </div>
+</div>

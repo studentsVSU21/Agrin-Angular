@@ -1,0 +1,13 @@
+<div class="card col-lg-6 order-container">
+    <div class="card-body order">
+        <h5 class="card-title">Заказ №{{order.id}}</h5>
+        <p class="card-text">
+            Заказчик : {{order.customer.fio}} <br>
+            Номер : +7 {{order.customer.phoneNumber}} <br/>
+            Почта : {{order.customer.email}} <br/>
+            Площадь : {{order.area}} <br/>
+            Регион : {{order.region.nameRegion}} <br/>
+        </p>
+        <ng-content></ng-content>
+    </div>
+</div>

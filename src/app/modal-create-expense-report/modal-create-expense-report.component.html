@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 class="modal-title">Отчет</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf='invalidParametrs' class="alert alert-danger" role="alert">
+        <strong>Не корректно!</strong>
+      </div>
+      <div *ngIf='errorParametrs' class="alert alert-danger" role="alert">
+        <strong>Ошибка!</strong> Не верный запрос.
+      </div>
+    <form>
+        <div class="form-group">
+            <label>Средство обработки:</label>
+            <select class="custom-select" [formControl]="formControlPesticide">
+                <option selected value="-1">--- Выбрать ---</option>
+                <option *ngFor="let pesticide of pesticides" [value]="pesticide.id">
+                {{pesticide.name}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Затраты:</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="20" [formControl]='formControlVolume'>
+        </div>
+    </form>
+  </div>
+<div class="modal-footer">
+    <div class="btn" (click)="saveExpenseReport()">Завершить</div>
+</div>
